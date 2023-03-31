@@ -1,0 +1,34 @@
+
+logging:
+  level:
+    com.mirothech: DEBUG
+    org.springframework.data: TRACE
+    io:
+      netty: DEBUG
+    reactor:
+      core: TRACE
+      util: TRACE
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5673
+  data:
+    mongodb:
+      uri: mongodb://root:password@localhost:27017/image_db?authSource=admin
+      database: image_db
+
+management:
+  info:
+    git:
+      mode: full
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+  endpoint:
+    logfile:
+      enabled: true
