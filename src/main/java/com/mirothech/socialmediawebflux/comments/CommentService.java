@@ -1,5 +1,6 @@
 package com.mirothech.socialmediawebflux.comments;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
@@ -11,8 +12,11 @@ public class CommentService {
 
     private final CommentWriterRepository repository;
 
-    public CommentService(CommentWriterRepository repository) {
+    private final MeterRegistry meterRegistry;
+
+    public CommentService(CommentWriterRepository repository, MeterRegistry meterRegistry) {
         this.repository = repository;
+        this.meterRegistry = meterRegistry;
     }
 
     @RabbitListener(bindings = @QueueBinding(
@@ -20,7 +24,10 @@ public class CommentService {
     public void save(Comment newComment) {
         repository.save(newComment)
                 .log("commentService-save")
-                .subscribe();
+                .subscribe(comment ->
+                        meterRegistry.counter("comments.consumed", "imageId", comment.getImageId())
+                                .increment()
+                );
     }
 
 }

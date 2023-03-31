@@ -1,7 +1,6 @@
-package com.mirothech.socialmediawebflux.comments;
+package com.mirothech.socialmediawebflux.images;
 
 
-import com.mirothech.socialmediawebflux.comments.Comment;
 import org.springframework.data.repository.Repository;
 import reactor.core.publisher.Flux;
 

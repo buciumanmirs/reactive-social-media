@@ -1,6 +1,11 @@
 package com.mirothech.socialmediawebflux.comments;
+import org.springframework.data.repository.Repository;
+import reactor.core.publisher.Mono;
 
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+public interface CommentWriterRepository extends Repository<Comment, String> {
 
-public interface CommentWriterRepository extends ReactiveCrudRepository<Comment,String> {
+    Mono<Comment> save(Comment comment);
+
+    Mono<Comment> findById(String id);
+
 }

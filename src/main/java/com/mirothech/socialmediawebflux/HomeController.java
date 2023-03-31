@@ -1,6 +1,6 @@
 package com.mirothech.socialmediawebflux;
 
-import com.mirothech.socialmediawebflux.comments.CommentReaderRepository;
+import com.mirothech.socialmediawebflux.images.CommentReaderRepository;
 import com.mirothech.socialmediawebflux.images.ImageService;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
