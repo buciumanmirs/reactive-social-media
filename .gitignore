@@ -23,6 +23,6 @@
 hs_err_pid*
 
 .idea
-build/*
+build
 .gradle
 upload-dir/*
